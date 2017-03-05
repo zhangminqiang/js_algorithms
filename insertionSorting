@@ -1,0 +1,16 @@
+
+function charupaixu(arr=[]){
+    if(arr.length < 2){
+        return arr;
+    }
+
+    outer: for(let i=1, len=arr.length;i<len;i++){
+        for(let j=0;j<i;j++){
+            if(arr[i] < arr[j]){
+                let item = arr.splice(j, 1);
+                arr.splice(i, 0, item)
+                continue outer;
+            }
+        }
+    }
+}
