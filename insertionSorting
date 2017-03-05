@@ -1,5 +1,10 @@
-
-function charupaixu(arr=[]){
+/**
+ * 插入排序-按升序排序
+ * @constructor insertionSorting
+ * @param arr {array}
+ * @result {array}
+ */
+function insertionSorting(arr=[]){
     if(arr.length < 2){
         return arr;
     }
@@ -8,9 +13,11 @@ function charupaixu(arr=[]){
         for(let j=0;j<i;j++){
             if(arr[i] < arr[j]){
                 let item = arr.splice(j, 1);
-                arr.splice(i, 0, item)
+                arr.splice(i, 0, item);
                 continue outer;
             }
         }
     }
+    
+    return arr;
 }
