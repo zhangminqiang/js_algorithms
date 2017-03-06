@@ -1,0 +1,65 @@
+/**
+ * 合并算法、归并排序（升序）
+ * 思路：先使每个子序列有序，再使子序列段间有序
+ * 例如：[8, 3, 5, 7, 9] => [3, 8]/[5, 7]/[9] => [3, 5, 7, 8]/[9] => [3, 5, 7, 8, 9]
+ * @function mergeSorting
+ * @param arr {array}
+ * @result {array}
+ */
+function mergeSorting(arr) {
+    var mid, right, left;
+
+    if (arr.length < 2) {
+        return arr;
+    }
+
+    mid = Math.floor(arr.length / 2);
+    right = mergeSorting(arr.slice(0, mid));
+    left = mergeSorting(arr.slice(mid));
+
+    return merge(right, left);
+}
+
+/**
+ * 子序列合并：谁小谁先进，剩余的一把塞
+ * @function merge
+ * @param right {array}
+ * @param left {array}
+ * @result {array}
+ */
+function merge(right, left) {
+    var result = [], i = 0, j = 0, residue;
+
+    while (i !== right.length && j !== left.length) {
+        if (right[i] <= left[j]) {
+            result.push(right[i]);
+            i = i + 1;
+        } else {
+            result.push(left[j]);
+            j = j + 1;
+        }
+    }
+
+    residue = i === right.length ? left : right;
+    i = i === right.length ? j : i;
+
+    for (var len = residue.length; i < len; i++) {
+        result.push(residue[i]);
+    }
+
+    return result;
+}
+
+/**
+ * 子序列合并优化
+ */
+function merge2(right, left) {
+    var result = [];
+
+    while (right.length > 0 && left.length > 0) {
+        result.push(right[0] < left[0] ? right.shift() : left.shift());
+    }
+
+    return result.concat(right).concat(left);
+}
+
