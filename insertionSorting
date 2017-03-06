@@ -1,19 +1,18 @@
 /**
  * 插入排序-按升序排序
- * @constructor insertionSorting
+ * @function insertionSorting
  * @param arr {array}
  * @result {array}
  */
-function insertionSorting(arr=[]){
+function insertionSorting(arr){
     if(arr.length < 2){
         return arr;
     }
 
-    outer: for(let i=1, len=arr.length;i<len;i++){
-        for(let j=0;j<i;j++){
+    outer: for(var i=1, len=arr.length;i<len;i++){
+        for(var j=0;j<i;j++){
             if(arr[i] < arr[j]){
-                let item = arr.splice(j, 1);
-                arr.splice(i, 0, item);
+                arr.splice(j, 0, arr.splice(i, 1)[0]);
                 continue outer;
             }
         }
