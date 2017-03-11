@@ -1,5 +1,7 @@
 #### 快速排序
 什么是快速排序？选一个基准值（一般选第一个或最后一个）将数组分为两边，大于这个值的放一边，小于这个值得放另一边。然后对两边重复同意操作，直到只剩一项。
+
+```
 function quicksort(arr){
     var left = [], 
         right = [], 
@@ -24,3 +26,4 @@ function quicksort(arr){
 
     return left.concat(current).concat(right);
 }
+```
