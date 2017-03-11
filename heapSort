@@ -3,20 +3,51 @@
 3.构造初始堆怎么理解？就是把一颗完全二叉树弄成符合1的堆。
 4.堆一般用数组来表示，第i项节点与父节点、左子节点、右子节点的关系分别是：(i-1)/2、2*i+1、2*i+2。为什么？看节点图可以看出同层级节点数是上一级同层级节点数的两倍。
 5.堆排序（大顶堆）过程：
-  a.构造堆：将二叉树构造成堆，而构造堆是从最后一个非叶子节点（如果节点个数为n，则最后非叶子节点的索引为n/2）开始与子节点比较，取子节点和父节点中最大的值。依次执行到父节点，从而构建初始堆完成。
+  a.构造堆：将二叉树构造成堆，而构造堆是从最后一个非叶子节点（如果节点个数为n，则最后非叶子节点的索引为n/2）开始与子节点比较，取子节点和父节点中最大的值。依次执行到跟节点，从而构建初始堆完成。
   b.调整堆：将跟元素与最后一个叶子节点调换，然后排除调换后的最后叶子节点，重新开始a步骤。
   
-function heapSorting(arr){
-  var buildMaxHeap = function(){
-        // 最后一个非叶子节点开始与子节点比较
-       for(var i=Math.floor(arr.length/2)-1;i>=0;i--){
-          heapAdjust(i);
-        }
-     },
-     swap = function(){},
-     heapAdjust = function(i){
-        
-     };
-     
-     
+function heapSorting(arr) {
+    var len = arr.length, start,
+        buildMaxHeap = function (start) {
+            for (var i = Math.floor(start / 2); i >= 0; i--) {
+                heapAdjust(i, start);
+            }
+        },
+        swap = function (i, j) {
+            var temp = arr[i];
+                arr[i] = arr[j]
+                arr[j] = temp;
+        },
+        heapAdjust = function (i, start) {
+            var maxIndex,
+                leftIndex = 2 * i + 1,
+                rightIndex = 2 * i + 2;
+
+            if (leftIndex > start - 1) {
+                return;
+            }
+
+            if (arr[i] < arr[leftIndex]) {
+                maxIndex = leftIndex;
+            }else{
+                maxIndex = i;
+            }
+
+            if (rightIndex <= start - 1 &&  arr[rightIndex] > arr[maxIndex]) {
+                maxIndex = rightIndex;
+            }
+
+            if(maxIndex !== i)
+            {
+                swap(i, maxIndex);
+            }
+        };
+
+    for(start=len; start>0; start--){
+        buildMaxHeap(start);
+        swap(0, start-1);
+    }
+
+    return arr;
 }
+
