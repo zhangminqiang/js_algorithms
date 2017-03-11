@@ -6,6 +6,7 @@
   a.构造堆：将二叉树构造成堆，而构造堆是从最后一个非叶子节点（如果节点个数为n，则最后非叶子节点的索引为n/2）开始与子节点比较，取子节点和父节点中最大的值。依次执行到跟节点，从而构建初始堆完成。
   b.调整堆：将跟元素与最后一个叶子节点调换，然后排除调换后的最后叶子节点，重新开始a步骤。
   
+// asc 
 function heapSorting(arr) {
     var len = arr.length, start,
         buildMaxHeap = function (start) {
