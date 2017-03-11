@@ -1,3 +1,4 @@
+```
 /**
  * 冒泡算法（升序）：两个值比较，较大的值往后移
  */
@@ -18,3 +19,4 @@ function bubbleSorting(arr){
 
     return arr;
 }
+```
